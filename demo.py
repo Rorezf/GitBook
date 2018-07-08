@@ -21,7 +21,7 @@ class Test_demo:
 		assert 1 == 1	
 
 @allure.feature("demo test 2")
-class Test_demo:
+class Test_demo_2:
 	@allure.story("step_one")
 	def test_one(self):
 		allure.step('first')
