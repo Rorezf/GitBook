@@ -10,15 +10,12 @@ allure.environment(browser="chrome")
 class Test_demo:
 	@allure.story("step_one")
 	def test_one(self):
-		# with allure.step("first"):
-		# 	allure.attach("login")
-		# 	allure.attach("click")
-		# with allure.step("secondly"):
-		# 	allure.attach("expect:1")
 		allure.step('first')
 		assert 1 == 1
 		allure.step("secondly")
 		assert 2 == 2
 
+	@allure.story("step_two")
 	def test_two(self):
+		allure.step("secondly")
 		assert 1 == 1	
