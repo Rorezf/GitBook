@@ -17,5 +17,19 @@ class Test_demo:
 
 	@allure.story("step_two")
 	def test_two(self):
+		allure.step("third")
+		assert 1 == 1	
+
+@allure.feature("demo test 2")
+class Test_demo:
+	@allure.story("step_one")
+	def test_one(self):
+		allure.step('first')
+		assert 1 == 1
 		allure.step("secondly")
+		assert 2 == 2
+
+	@allure.story("step_two")
+	def test_two(self):
+		allure.step("third")
 		assert 1 == 1	
