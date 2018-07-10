@@ -27,6 +27,7 @@ class Test_demo:
 		assert 1 == 1	
 
 @allure.feature("demo test 2")
+@allure.testcase("https://www.baidu.com")
 class Test_demo_2:
 	@allure.story("step_one")
 	def test_one(self):
