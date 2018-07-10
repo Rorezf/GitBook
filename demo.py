@@ -5,6 +5,7 @@ import allure
 
 allure.environment(host="127.0.0.1")
 allure.environment(platform="windows")
+allure.environment(site="company")
 
 @allure.feature("demo test")
 class Test_demo:
