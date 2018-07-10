@@ -14,7 +14,7 @@ class Test_demo:
 		allure.step('first')
 		assert 1 == 1
 		allure.step("secondly")
-		assert 2 == 3
+		assert 2 == 2
 
 	@allure.story("step_two")
 	def test_two(self):
@@ -38,4 +38,4 @@ class Test_demo_2:
 	@allure.story("step_two")
 	def test_two(self):
 		allure.step("third")
-		assert 1 == 4	
+		assert 1 == 1
