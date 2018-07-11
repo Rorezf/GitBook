@@ -21,13 +21,13 @@ class Test_demo:
 		allure.step("third")
 		assert 1 == 1	
 
-	@allure.issue("https://www.baidu.com")
+	@allure.issue("http://192.168.55.192:8888/index/?case_id=2")
 	def test_three(self):
 		allure.step("four")
-		assert 1 == 1	
+		assert 1 == 12
 
 @allure.feature("demo test 2")
-@allure.testcase("http://192.168.55.192:8888/index")
+@allure.testcase("http://192.168.55.192:8888/index/?case_id=1")
 class Test_demo_2:
 	@allure.story("step_one")
 	def test_one(self):
