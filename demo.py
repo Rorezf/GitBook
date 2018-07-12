@@ -3,9 +3,8 @@
 import pytest
 import allure
 
-allure.environment(host="127.0.0.1")
 allure.environment(platform="windows")
-allure.environment(site="company")
+allure.environment(summary="http://192.168.55.192:8888/summary")
 
 @allure.feature("demo test")
 class Test_demo:
