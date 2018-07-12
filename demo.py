@@ -26,7 +26,7 @@ class Test_demo:
 		assert 1 == 12
 
 @allure.feature("demo test 2")
-@allure.testcase("http://192.168.55.192:8888/index/?stepName=@1.1:%20show%20ldp")
+@allure.testcase("http://192.168.55.192:8888/index/?stepName=@8.0.0: preconfiguration&caseName=Tests.smoke.aaa.aaa_radius.test&projectName=19-dxiaoming-autoapp")
 class Test_demo_2:
 	@allure.story("step_one")
 	def test_one(self):
