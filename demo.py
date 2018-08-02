@@ -20,7 +20,7 @@ class Test_demo:
 		allure.step("third")
 		assert 1 == 1	
 
-	@allure.issue("http://192.168.55.192:8888/index/?stepName=@1.1:%20show%20ldp")
+	@allure.issue("<h3>debug</h3>")
 	def test_three(self):
 		allure.step("four")
 		assert 1 == 12
