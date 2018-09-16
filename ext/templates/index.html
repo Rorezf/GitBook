@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Demo</title>
+    <link rel="stylesheet" type="text/css" href="./static/ext_js/css/ext-all.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="./static/ext_js/css/treegrid.css" rel="stylesheet" />
+    <script type="text/javascript" src="./static/ext_js/js/ext-base.js"></script>
+    <script type="text/javascript" src="./static/ext_js/js/ext-all.js"></script>
+    <script type="text/javascript" src="./static/ext_js/js/TreeGridSorter.js"></script>
+    <script type="text/javascript" src="./static/ext_js/js/TreeGridColumnResizer.js"></script>
+    <script type="text/javascript" src="./static/ext_js/js/TreeGridNodeUI.js"></script>
+    <script type="text/javascript" src="./static/ext_js/js/TreeGridLoader.js"></script>
+    <script type="text/javascript" src="./static/ext_js/js/TreeGridColumns.js"></script>
+    <script type="text/javascript" src="./static/ext_js/js/TreeGrid.js"></script>
+</head>
+<body>
+    <div id="tree"></div>
+    <script type="text/javascript">
+        Ext.onReady(function() {
+            Ext.QuickTips.init();
+            var tree = new Ext.ux.tree.TreeGrid({
+                title: 'Core Team Projects',
+                width: 500,
+                height: 300,
+                renderTo: "tree",
+                enableDD: true,
+                listeners:{click: toDetails},
+                columns:[{
+                    header: 'Task',
+                    dataIndex: 'task',
+                    width: 230
+                },{
+                    header: 'Status',
+                    width: 150,
+                    dataIndex: 'status'
+                }],
+                dataUrl: '/data'
+            });
+        });
+        function toDetails(node){
+            console.log(node);
+        }
+    </script>
+</body>
+</html>

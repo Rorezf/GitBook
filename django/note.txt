@@ -1,0 +1,6 @@
+关闭自动转义
+单个 {{ x|safe }}
+多个
+{% autoescape off %}
+{{ x }}    {{ y }}
+{% endautoescape %}
