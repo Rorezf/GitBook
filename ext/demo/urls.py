@@ -19,6 +19,7 @@ import index
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^index', index.index),
+    url(r'^index$', index.index),
     url(r'^data', index.jsonData),
+    url(r'^table$', index.tableIndex),
 ]

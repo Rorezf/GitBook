@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Table</title>
+    <link rel="stylesheet" type="text/css" href="./static/data_table/datatables.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="./static/data_table/datatables.min.js"></script>
+</head>
+<body>
+	<table id="example">
+		<thead>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Office</th>
+                <th>Age</th>
+                <th>Start date</th>
+                <th>Salary</th>
+            </tr>
+        </thead>
+	</table>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+		    $('#example').DataTable({
+                "info": false,
+                "stateSave": true,
+                "pagingType": "simple_numbers",
+                "ajax": '/data'
+            });
+		});
+	</script>
+</body>
+</html>
