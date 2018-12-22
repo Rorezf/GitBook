@@ -1,0 +1,11 @@
+{
+	"title": "Sharing",
+	"author": "Rore",
+	"plugins": [
+		"splitter",
+		"anchor-navigation-ex",
+		"-sharing",
+		"sharing-plus",
+		"-livereload"
+	]
+}
