@@ -102,14 +102,18 @@ self.browser.form['Bugzilla_password'] = base64.b64decode(SPIDER_PWD)
 self.browser.submit()
 ```
 
-### Phantomjs
+### Selenium
+
+#### Phantomjs
 
 ```
 from selenium import webdriver
 PJS_PATH = '/usr/local/share/syncDb/driver/phantomjs/bin/phantomjs'
 PJS_ARGS = ['--ignore-ssl-errors=true', '--load-images=false']
+SERVICE_ARGS = ['--ignore-ssl-errors=true', '--load-images=yes', '--disk-cache=no', '--webdriver-loglevel=none']
 
 self.driver = webdriver.PhantomJS(executable_path=PJS_PATH, service_args=PJS_ARGS)
+self.driver.command_executor._commands['executePhantomScript'] = ('POST', '/session/$sessionId/phantom/execute')
 self.driver.implicitly_wait(10)
 self.driver.set_page_load_timeout(10)
 self.driver.set_script_timeout(10)
@@ -132,9 +136,47 @@ def getLoginCookie(self):
 	targetCookie = {str(eachCookie['name']): str(eachCookie['value'])
 	for eachCookie in cookies if "JSESSIONID" in eachCookie['name']}
 	return targetCookie
+
+browser_log = filter(lambda x: str(pageid) in x, self.driver.get_log('browser'))
+
+self.driver.delete_all_cookies()
+for c in range(len(self.COOKIE_NAME)):
+    self.driver.add_cookie({
+        'domain': DOMAIN,
+        'name': self.COOKIE_NAME[c],
+        'value': self.COOKIE_VALUE[c],
+        'path': '/',
+        'expires': None
+        })
+self.driver.refresh()
 ```
 
-### Firefox & Browsermob
+#### PhantomJs/JavaScript
+
+```
+// var page = this;
+page.onLoadStarted = function(){
+    page.navigationStart = new Date().getTime();
+};
+page.onResourceRequested = function (req) { 
+    page.browserLog.push({'%s': {'requestID': req.id, 'startUrl': req.url, 'startTime': req.time.toISOString()}});
+};
+page.onResourceReceived = function (res) {
+    if (res.stage === 'end' && res.statusText == 'OK') {
+        page.browserLog.push({'%s': {'responseID': res.id, 'endUrl': res.url, 'status': res.status, 'endTime': res.time.toISOString()}});
+    }
+    else if (res.stage === 'start' && res.statusText == 'OK') {
+        page.browserLog.push({'%s': {'responseID': res.id, 'bodySize': res.bodySize}});
+    }
+};
+page.onLoadFinished = function(){
+    var onloadTime = new Date().getTime() - page.navigationStart;
+    page.browserLog.push({'%s': {'onload': onloadTime}});
+    page.browserLog.push({'%s': {'navTime': page.navigationStart}});
+};
+```
+
+#### Firefox & Browsermob
 
 ```
 from selenium import webdriver
@@ -168,4 +210,49 @@ with open('result.har', 'w') as result:
     json.dump(proxy.har, result)
 server.stop()
 driver.quit()
+```
+
+---
+
+## Graylog
+
+```
+class ContextFilter(logging.Filter):
+    def __init__(self, req_env):
+        self.req_env = req_env
+
+    def filter(self, record):
+        record.req_env = self.req_env
+        return True
+
+
+class graylogService():
+    def __init__(self, environment):
+        logging.basicConfig(level=logging.INFO)
+        self.gelfLogger = logging.getLogger(self.__class__.__name__)
+        if environment == 'testing':
+            handler = GelfTcpHandler(host=HOST, port=PORT, debug=True, 
+                include_extra_fields=True, _service='udata-web-monitor', env='development')
+        self.gelfLogger.addHandler(handler)
+
+    def recordLog(self):
+
+        if type == 'screen':
+            msg = "[graylog][%s][pageid: %s][jspName: %s][onloadTime: %sms][screenTime: %sms][status: %s]" %(req_game, req_page_id, req_page_name, req_page_onload_timing, req_page_screen_timing, req_page_status)
+        elif type == 'resource':
+            msg = "[graylog][%s][pageid: %s][jspName: %s][%s: %sms][bodySize: %s]" %(req_game, req_page_id, req_page_name, req_page_resource, req_page_resource_timing, req_page_resource_bodySize)
+        elif type == 'msg':
+            msg = "[graylog][%s][%s]" %(req_game, msg)
+        else:
+            msg = '[graylog][no msg]'
+
+        msgFilter = ContextFilter(req_id = req_id, req_game = req_game, req_page_id = req_page_id,
+        req_page_name = req_page_name, req_page_module = req_page_module, req_page_resource = req_page_resource,
+        req_page_resource_timing = req_page_resource_timing, req_page_resource_type = req_page_resource_type, 
+        req_page_screen_timing = req_page_screen_timing, req_page_onload_timing = req_page_onload_timing, 
+        req_page_status = req_page_status, req_page_resource_bodySize = req_page_resource_bodySize, req_env = req_env)
+
+        self.gelfLogger.addFilter(msgFilter)
+        self.gelfLogger.info(msg)
+        self.gelfLogger.removeFilter(msgFilter)
 ```
