@@ -1,10 +1,8 @@
 # Numpy
 
----
-
 ## Matplot
 
-```
+```text
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -13,7 +11,7 @@ from matplotlib import rcParams
 
 ### 均值/峰值堆积图
 
-```
+```text
 def draw_resource_stack(resource):
     jspNameList = []
     resourceAver = []
@@ -33,7 +31,7 @@ def draw_resource_stack(resource):
     pd_averTime = pd.DataFrame(resourceAver, index = jspNameList, columns = pd.Index(resourceTypeList, name = 'ResourceType'))
     pd_maxTime = pd.DataFrame(resourceMax, index = jspNameList, columns = pd.Index(resourceTypeList, name = 'ResourceType'))
     pd_averTime_pct = pd_averTime.div(pd_averTime.sum(1).astype(float), axis = 0)
-    
+
     figure = plt.figure("Resource Proportition", figsize=(12, 9))
     ax = figure.add_subplot(111)
     pd_averTime_pct.plot(kind = 'bar', ax = ax, stacked = True)
@@ -57,7 +55,7 @@ def draw_resource_stack(resource):
 
 ### 直方图和箱形图
 
-```
+```text
 def draw_general(general):
     general_basic = []
     general_jspName = []
@@ -65,7 +63,7 @@ def draw_general(general):
         general_jspName.append(jspName)
         general_basic.append([general['JspForMobileGameOp']['onload'][jspName]['averTime'], general['JspForMobileGameOp']['screen'][jspName]['averTime']])
     pd_general_basic = pd.DataFrame(general_basic, index = general_jspName, columns = pd.Index(['onloadTime', 'screenTime'], name = 'GeneralTime'))
-    
+
     general_custom = []
     for pageid in general['JspForMobileGame']['onload']:
         general_custom.append([general['JspForMobileGame']['onload'][pageid]['averTime'], general['JspForMobileGame']['screen'][pageid]['averTime']])
@@ -95,7 +93,7 @@ def draw_general(general):
 
 ### 饼状图
 
-```
+```text
 def draw_timeout_pie(general):
     for module in general:
         pie_figure = plt.figure(module + ' pie', figsize = (12, 9))
@@ -113,3 +111,4 @@ def draw_timeout_pie(general):
         imgName = BASE_DIR + '/static/img/' + module + '_pie.png'
         pie_figure.savefig(imgName)
 ```
+

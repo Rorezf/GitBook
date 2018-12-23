@@ -1,38 +1,34 @@
 # Extjs
 
----
-
-## Tree Grid(3.4)
+## Tree Grid\(3.4\)
 
 ### Resize
 
-```
-	window.treeObj.onResize(x, y);
-	window.treeObj.columns[i].width = x;
-	window.treeObj.updateColumnWidths();
+```text
+    window.treeObj.onResize(x, y);
+    window.treeObj.columns[i].width = x;
+    window.treeObj.updateColumnWidths();
 ```
 
 ### Reload Data
 
-```
-	window.treeObj.getLoader().dataUrl = url;
-	window.treeObj.getRootNode().reload();
+```text
+    window.treeObj.getLoader().dataUrl = url;
+    window.treeObj.getRootNode().reload();
 ```
 
 ### Select Leaf
 
-```
-	window.treeObj.selectPath(node.id);
+```text
+    window.treeObj.selectPath(node.id);
 ```
 
----
-
-## Tree(4.0+)
+## Tree\(4.0+\)
 
 ### Init
 
-```
-	Ext.onReady(function() {
+```text
+    Ext.onReady(function() {
         var treeStore = Ext.create('Ext.data.TreeStore', {
             proxy: {
                 type: 'ajax',

@@ -1,10 +1,8 @@
 # Automation
 
----
-
 ## Puppeteer
 
-```
+```text
 const puppeteer = require('puppeteer');
 
 function delay(timeout) {
@@ -38,3 +36,4 @@ function delay(timeout) {
   await browser.close();
 })();
 ```
+

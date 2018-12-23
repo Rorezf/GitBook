@@ -1,10 +1,8 @@
 # Utils
 
----
-
 ## Time
 
-```
+```text
 import time, datetime
 
 def str2datetime(strtime):
@@ -25,3 +23,4 @@ def timestamp2datetime(timestamp):
 def timestamp2str(timestamp):
     return datetime.datetime.fromtimestamp(timestamp / 1000.0).strftime('%Y-%m-%d %H:%M:%S.%f')
 ```
+

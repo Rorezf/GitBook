@@ -1,10 +1,8 @@
-# utils
-
----
+# Utils
 
 ## Excel
 
-```
+```text
 include './testlink/lib/excel/PHPExcel/IOFactory.php';
 $tmp_name = $_FILES["xls"]["tmp_name"];
 $name = $_FILES["xls"]["name"];
@@ -22,9 +20,10 @@ $sheet = $objPHPExcel->getSheet(0);
 $highestRow = $sheet->getHighestRow();
 $highestColumn = $sheet->getHighestColumn();
 for ($row = 1; $row <= $highestRow; $row++){
-	$rowData = $sheet->rangeToArray('A' . $row . ':' . $highestColumn . $row, NULL, TRUE, FALSE);
-	var_dump($rowData);
-	echo "<br>";
+    $rowData = $sheet->rangeToArray('A' . $row . ':' . $highestColumn . $row, NULL, TRUE, FALSE);
+    var_dump($rowData);
+    echo "<br>";
 }
 unlink($inputFileName);
 ```
+
