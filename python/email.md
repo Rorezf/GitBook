@@ -4,7 +4,7 @@
 
 ### Smtp
 
-```text
+```python
 import smtplib
 from email import encoders
 from email.mime.base import MIMEBase
@@ -42,7 +42,7 @@ def sendMail(content, athFile, subject):
 
 ### IMAP
 
-```text
+```python
 from imapclient import IMAPClient
 self.server = IMAPClient(HOST, use_uid=True, ssl=False)
 self.server.login(base64.b64decode(USERNAME), PASSWORD)

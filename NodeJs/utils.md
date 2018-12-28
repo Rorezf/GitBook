@@ -2,7 +2,7 @@
 
 ## Puppeteer
 
-```text
+```javascript
 const puppeteer = require('puppeteer');
 
 function delay(timeout) {

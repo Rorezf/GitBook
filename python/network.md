@@ -1,15 +1,15 @@
 # NetWork
 
-### ssl
+## ssl
 
-```text
+```python
 import ssl
 ssl._create_default_https_context = ssl._create_unverified_context
 ```
 
-### Requests
+## Requests
 
-```text
+```python
 import requests
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
@@ -54,9 +54,9 @@ def getParams():
     return url, headers, cookies, data, verify
 ```
 
-### BeautifulSoup
+## BeautifulSoup
 
-```text
+```python
 from bs4 import BeautifulSoup
 content = self.browser.response().read()
 soup = BeautifulSoup(content, "lxml")
@@ -67,11 +67,11 @@ resolutionList = soup.select(".bz_resolution_column span")
 resolutionList = [eachRsl.attrs['title'] for eachRsl in resolutionList]
 ```
 
-### Spider
+## Spider
 
-#### Mechanize
+### Mechanize
 
-```text
+```python
 import mechanize
 self.browser = mechanize.Browser()
 cookie = cookielib.LWPCookieJar()
@@ -94,11 +94,11 @@ self.browser.form['Bugzilla_password'] = base64.b64decode(SPIDER_PWD)
 self.browser.submit()
 ```
 
-#### Selenium
+### Selenium
 
-**Phantomjs**
+#### Phantomjs
 
-```text
+```python
 from selenium import webdriver
 PJS_PATH = '/usr/local/share/syncDb/driver/phantomjs/bin/phantomjs'
 PJS_ARGS = ['--ignore-ssl-errors=true', '--load-images=false']
@@ -143,9 +143,9 @@ for c in range(len(self.COOKIE_NAME)):
 self.driver.refresh()
 ```
 
-**PhantomJs/JavaScript**
+#### PhantomJs/JavaScript
 
-```text
+```php
 // var page = this;
 page.onLoadStarted = function(){
     page.navigationStart = new Date().getTime();
@@ -168,9 +168,9 @@ page.onLoadFinished = function(){
 };
 ```
 
-**Firefox & Browsermob**
+### Firefox & Browsermob
 
-```text
+```python
 from selenium import webdriver
 from browsermobproxy import Server
 from selenium.webdriver.firefox.options import Options
@@ -206,7 +206,7 @@ driver.quit()
 
 ### Graylog
 
-```text
+```python
 class ContextFilter(logging.Filter):
     def __init__(self, req_env):
         self.req_env = req_env

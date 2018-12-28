@@ -1,18 +1,22 @@
 # Table of contents
 
 * [Introduction](README.md)
-* [Python](python/README.md)
-  * [NetWork](python/network.md)
-  * [Email](python/email.md)
-  * [Excel](python/excel.md)
-  * [Numpy](python/numpy.md)
-  * [Utils](python/utils.md)
-* [JavaScript](javascript/README.md)
-  * [Extjs](javascript/extjs.md)
-  * [Function](javascript/function.md)
-  * [Performance](javascript/performance.md)
-* [PHP](php/README.md)
-  * [Utils](php/utils.md)
-* [NodeJs](nodejs/README.md)
-  * [Automation](nodejs/automation.md)
 
+* [Python](Python/network.md)
+  * [NetWork](Python/network.md)
+  * [Email](Python/email.md)
+  * [Excel](Python/excel.md)
+  * [Numpy](Python/numpy.md)
+  * [Django](Python/django.md)
+  * [Utils](Python/utils.md)
+
+* [JavaScript](JavaScript/extjs.md)
+  * [Extjs](JavaScript/extjs.md)
+  * [Function](JavaScript/function.md)
+  * [Performance](JavaScript/performance.md)
+
+* [PHP](PHP/utils.md)
+
+* [NodeJs](NodeJs/utils.md)
+
+* [MySQL](MySQL/utils.md)

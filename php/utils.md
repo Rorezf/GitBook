@@ -2,7 +2,7 @@
 
 ## Excel
 
-```text
+```php
 include './testlink/lib/excel/PHPExcel/IOFactory.php';
 $tmp_name = $_FILES["xls"]["tmp_name"];
 $name = $_FILES["xls"]["name"];

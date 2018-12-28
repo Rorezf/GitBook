@@ -4,7 +4,7 @@
 
 ### Resize
 
-```text
+```javascript
     window.treeObj.onResize(x, y);
     window.treeObj.columns[i].width = x;
     window.treeObj.updateColumnWidths();
@@ -12,14 +12,14 @@
 
 ### Reload Data
 
-```text
+```javascript
     window.treeObj.getLoader().dataUrl = url;
     window.treeObj.getRootNode().reload();
 ```
 
 ### Select Leaf
 
-```text
+```javascript
     window.treeObj.selectPath(node.id);
 ```
 
@@ -27,7 +27,7 @@
 
 ### Init
 
-```text
+```javascript
     Ext.onReady(function() {
         var treeStore = Ext.create('Ext.data.TreeStore', {
             proxy: {

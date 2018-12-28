@@ -2,7 +2,7 @@
 
 ## Matplot
 
-```text
+```python
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -11,7 +11,7 @@ from matplotlib import rcParams
 
 ### 均值/峰值堆积图
 
-```text
+```python
 def draw_resource_stack(resource):
     jspNameList = []
     resourceAver = []
@@ -55,7 +55,7 @@ def draw_resource_stack(resource):
 
 ### 直方图和箱形图
 
-```text
+```python
 def draw_general(general):
     general_basic = []
     general_jspName = []
@@ -93,7 +93,7 @@ def draw_general(general):
 
 ### 饼状图
 
-```text
+```python
 def draw_timeout_pie(general):
     for module in general:
         pie_figure = plt.figure(module + ' pie', figsize = (12, 9))

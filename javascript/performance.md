@@ -2,7 +2,7 @@
 
 ## BrowserApi
 
-```text
+```javascript
 // 函数getPerfTime用于返回页面性能的基本时间
 function getPerfTime(){
     var tim = window.performance.timing;

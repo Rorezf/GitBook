@@ -4,7 +4,7 @@
 
 ### xlwt
 
-```text
+```python
 def customStyle(self,label):
     custom = xlwt.XFStyle()
     custom.alignment.horz = 1

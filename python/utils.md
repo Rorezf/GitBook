@@ -2,7 +2,7 @@
 
 ## Time
 
-```text
+```python
 import time, datetime
 
 def str2datetime(strtime):
@@ -22,5 +22,10 @@ def timestamp2datetime(timestamp):
 
 def timestamp2str(timestamp):
     return datetime.datetime.fromtimestamp(timestamp / 1000.0).strftime('%Y-%m-%d %H:%M:%S.%f')
+
+today = datetime.datetime.now()
+todayStr = today.strftime("%Y-%m-%d")
+endDate = today + datetime.timedelta(1)
+endDate = endDate.strftime("%Y-%m-%d")
 ```
 
