@@ -21,3 +21,5 @@
 * [NodeJs](NodeJs/utils.md)
 
 * [MySQL](MySQL/utils.md)
+
+* [CleanCode](CleanCode/notes.md)
