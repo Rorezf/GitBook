@@ -18,6 +18,8 @@ response = requests.get(env_url, cookies=self.cookies)
 response = requests.post(self.url, headers = self.headers, cookies = self.cookies, data = self.data, verify = self.verify)
 env_content = response.json()
 
+spiderSession = requests.Session()  # 访问同一站点的多个url时，保持cookie
+
 def getParams():
     with open('temp.txt', 'r') as f:
         content = f.read()
