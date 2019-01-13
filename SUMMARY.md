@@ -23,3 +23,5 @@
 * [MySQL](MySQL/utils.md)
 
 * [CleanCode](CleanCode/notes.md)
+
+* [SQA](SQA/architect.md)
