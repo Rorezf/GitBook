@@ -71,3 +71,41 @@ GROUP BY
 		a.testproject_id
 	);
 ```
+
+## Same Field
+
+```sql
+SELECT
+	id, creation_ts
+FROM
+	testplan_tcversions_copy t1
+INNER JOIN (
+	SELECT
+		testplan_id,
+		tcversion_id,
+		platform_id
+	FROM
+		testplan_tcversions_copy
+	GROUP BY
+		testplan_id,
+		tcversion_id,
+		platform_id
+	HAVING
+		count(1) > 1
+) t2 ON t1.testplan_id = t2.testplan_id
+AND t1.tcversion_id = t2.tcversion_id
+AND t1.platform_id = t2.platform_id;
+```
+
+```sql
+SELECT
+	group_concat(id ORDER BY creation_ts)
+FROM
+	testplan_tcversions
+GROUP BY
+	testplan_id,
+	tcversion_id,
+	platform_id
+HAVING
+	count(1) > 1;
+```
