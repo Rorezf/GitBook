@@ -39,7 +39,7 @@ d = defaultdict(set)
 d['a'].append(1)
 d['a'].append(2)
 
-# OrderedDict内部维护了一个双向链表，大小是普通自带你的两倍多
+# OrderedDict内部维护了一个双向链表，大小是普通自带字典的两倍多
 d = OrderedDict()
 d['a'] = 1
 d['b'] = 2

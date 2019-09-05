@@ -22,6 +22,38 @@ class SQL:
 		return self._conn, self._cur
 ```
 
+## Django-conn-pool
+
+```python
+pip install Django-conn-pool
+
+SQLALCHEMY_QUEUEPOOL = {
+    'pool_size': 10,
+    'max_overflow': 10,
+    'timeout': 5,
+    'recycle': 119,
+}
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django_conn_pool.mysql',
+        'HOST': '127.0.0.1',
+        'NAME': 'xxx',
+        'USER': 'xxx',
+        'PASSWORD': 'xxx',
+        'PORT': 3306,
+    },
+    'other': {
+        'ENGINE': 'django_conn_pool.mysql',
+        'HOST': '127.0.0.1',
+        'NAME': 'xxx',
+        'USER': 'xxx',
+        'PASSWORD': 'xxx',
+        'PORT': 3306,
+    },
+}
+```
+
 ## Redis
 
 ```python
