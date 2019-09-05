@@ -9,6 +9,7 @@
   * [Numpy](Python/numpy.md)
   * [Django](Python/django.md)
   * [Repository](Python/repository.md)
+  * [CookBook](Python/cookBook.md)
   * [Utils](Python/utils.md)
 
 * [JavaScript](JavaScript/extjs.md)

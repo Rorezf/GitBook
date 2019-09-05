@@ -25,6 +25,17 @@
 
 ## Tree\(4.0+\)
 
+### Reload Data
+
+```javascript
+window.treeObj.store.proxy.url = "/api/v1/exec/tree_data?" + data_temp;
+window.treeObj.getStore().reload();
+
+window.mainTree.getStore().load(window.mainTree.root);
+
+tree.getStore().getNodeById(current).expand();
+```
+
 ### Init
 
 ```javascript
@@ -107,4 +118,3 @@
         });
      });
 ```
-

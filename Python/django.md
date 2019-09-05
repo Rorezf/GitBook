@@ -59,3 +59,27 @@ dis_temp = 'attachment;filename="{}"'.format(fN)
 response['Content-Disposition'] = dis_temp
 return response
 ```
+
+## Others
+
+```python
+def getHostIp():
+	s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+	s.connect(('8.8.8.8', 80))
+	return s.getsockname()[0]
+
+def scpFileToLocal(fileSite, localSite):
+    child = pexpect.spawn('scp {} {}'.format(fileSite, localSite))
+    child.expect('password:')
+    child.sendline(base64.b64decode(SSH_PSWD))
+    child.read()
+
+def registerSmb(self):
+    child = self.hostAuth(SMB_COMMAND, False, self.usr)
+    child.expect('password')
+    child.sendline(base64.b64decode(DEFAULT_PWD))
+    child.expect('password')
+    child.sendline(base64.b64decode(DEFAULT_PWD))
+    child.read()
+
+```

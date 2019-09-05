@@ -68,20 +68,6 @@ function arrayFunctionInit(){
 
 ---
 
-## Checkbox
-
-```javascript
-var check = document.getElementsByClassName("ipt_checkbox");
-var caseId_array = new Array();
-for(var i = 0; i < check.length; i++) {
-	if (check[i].checked) {
-		caseId_array.push(check[i].id.split('_')[1])
-	}
-}
-```
-
----
-
 ## Sort
 
 ```javascript
@@ -133,4 +119,54 @@ function setCookie(c_name,value,expiredays){
 	document.cookie=c_name+ "=" +escape(value)+
 	((expiredays==null) ? "" : ";expires="+exdate.toGMTString());
 }
+```
+
+---
+
+## Bootstrap-Multiselect
+
+```javascript
+$('#multiSystemBOM').multiselect("destroy").multiselect({
+  buttonClass: 'systemBomCls',
+  buttonWidth: '400px',
+  nonSelectedText: '---'
+});
+```
+
+---
+
+## Url-Prefix
+
+```javascript
+var url = window.location.protocol + "//" + window.location.host;
+```
+
+---
+
+## Swal
+
+```javascript
+// confirm
+swal({
+		title: "Are you sure?",
+		text: msg,
+		icon: "warning",
+		dangerMode: true,
+		buttons: {
+			confirm: {text: 'Ok', value: true, visible: true, closeModal: false},
+			cancel: {text: 'Cancel', value: null, visible: true, closeModal: true}
+		}
+	}).then((status) => {if(status){tfunc();}});
+
+// input
+
+swal({
+	text: 'Input Module Name',
+	content: "input",
+	buttons: {
+	  	cancel: {text: 'Cancel', value: null, visible: true, closeModal: true},
+	  	confirm: {text: 'Submit', value: true, visible: true, closeModal: true}
+	}
+}).then(name => {func();});
+
 ```

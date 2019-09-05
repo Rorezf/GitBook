@@ -141,6 +141,13 @@ for c in range(len(self.COOKIE_NAME)):
         'expires': None
         })
 self.driver.refresh()
+
+self.driver.service.process.send_signal(signal.SIGTERM)
+self.driver.quit()
+
+KILL_PHANTOMJS = "ps -elf | grep phantomjs | awk '{print $4}' | xargs kill -s 9"
+os.system(KILL_PHANTOMJS)
+
 ```
 
 #### PhantomJs/JavaScript
@@ -207,43 +214,30 @@ driver.quit()
 ### Graylog
 
 ```python
-class ContextFilter(logging.Filter):
-    def __init__(self, req_env):
-        self.req_env = req_env
+#coding: utf-8
+import sys, logging
+reload(sys)  
+sys.setdefaultencoding('utf8')
+from pygelf import GelfTcpHandler
 
-    def filter(self, record):
-        record.req_env = self.req_env
-        return True
+GRAYLOG_HOST = '172.0.2.95'
+GRAYLOG_PORT = 12201
+
+class GelfGrayLog(object):
+    def __init__(self):
+        logging.basicConfig(
+            level=logging.INFO, 
+            format='[%(asctime)s][%(levelname)s] %(message)s', 
+            datefmt='%Y-%m-%d %H:%M:%S')
+
+        handler = GelfTcpHandler(host=GRAYLOG_HOST, port=GRAYLOG_PORT,
+            debug=True, include_extra_fields=True, py='django')
+        
+        self._logger = logging.getLogger()
+        self._logger.handlers = []
+        self._logger.addHandler(handler)
 
 
-class graylogService():
-    def __init__(self, environment):
-        logging.basicConfig(level=logging.INFO)
-        self.gelfLogger = logging.getLogger(self.__class__.__name__)
-        if environment == 'testing':
-            handler = GelfTcpHandler(host=HOST, port=PORT, debug=True, 
-                include_extra_fields=True, _service='udata-web-monitor', env='development')
-        self.gelfLogger.addHandler(handler)
-
-    def recordLog(self):
-
-        if type == 'screen':
-            msg = "[graylog][%s][pageid: %s][jspName: %s][onloadTime: %sms][screenTime: %sms][status: %s]" %(req_game, req_page_id, req_page_name, req_page_onload_timing, req_page_screen_timing, req_page_status)
-        elif type == 'resource':
-            msg = "[graylog][%s][pageid: %s][jspName: %s][%s: %sms][bodySize: %s]" %(req_game, req_page_id, req_page_name, req_page_resource, req_page_resource_timing, req_page_resource_bodySize)
-        elif type == 'msg':
-            msg = "[graylog][%s][%s]" %(req_game, msg)
-        else:
-            msg = '[graylog][no msg]'
-
-        msgFilter = ContextFilter(req_id = req_id, req_game = req_game, req_page_id = req_page_id,
-        req_page_name = req_page_name, req_page_module = req_page_module, req_page_resource = req_page_resource,
-        req_page_resource_timing = req_page_resource_timing, req_page_resource_type = req_page_resource_type, 
-        req_page_screen_timing = req_page_screen_timing, req_page_onload_timing = req_page_onload_timing, 
-        req_page_status = req_page_status, req_page_resource_bodySize = req_page_resource_bodySize, req_env = req_env)
-
-        self.gelfLogger.addFilter(msgFilter)
-        self.gelfLogger.info(msg)
-        self.gelfLogger.removeFilter(msgFilter)
+grayLogger = GelfGrayLog()._logger
 ```
 
