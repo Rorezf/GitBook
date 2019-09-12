@@ -1,5 +1,48 @@
 # Django
 
+## Setting
+
+```python
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = False
+EMAIL_PORT = 25
+EMAIL_HOST = 'smtp.qiye.163.com'
+EMAIL_HOST_USER = 'sqagz_gitlab@casachina.com.cn'
+EMAIL_HOST_PASSWORD = base64.b64decode('MTIzNDVBYQ==')
+
+ADMINS = [
+    ('luozhifeng', 'luozhifeng@casachina.com.cn'),
+    ('shaoyunshi', 'shaoyunshi@casachina.com.cn')]
+SERVER_EMAIL = 'sqagz_gitlab@casachina.com.cn'
+DEFAULT_FROM_EMAIL = 'sqagz_gitlab@casachina.com.cn'
+
+SESSION_ENGINE = 'redis_sessions.session'
+SESSION_REDIS = {
+    'host': REDIS_HOST,
+    'port': REDIS_PORT,
+    'db': REDIS_SESSION_INDEX,
+    'prefix': 'session',
+    'socket_timeout': 3,
+    'retry_on_timeout': False
+}
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
+STATICFILES_FINDERS = ('django.contrib.staticfiles.finders.FileSystemFinder',
+                       'django.contrib.staticfiles.finders.AppDirectoriesFinder')
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://{}:{}/{}".format(REDIS_HOST, REDIS_PORT, REDIS_CACHE_INDEX),
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
+
+```
+
 ## MySQL
 
 ```python
